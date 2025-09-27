@@ -135,6 +135,9 @@ const EnhancedHero = () => {
               >
                 <Button
                   size="lg"
+                  onClick={() =>
+                    window.open("https://cheatfund.vercel.app/", "_blank")
+                  }
                   className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 group relative overflow-hidden"
                 >
                   <motion.div
