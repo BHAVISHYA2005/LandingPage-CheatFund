@@ -70,7 +70,7 @@ export function TubelightNavbar() {
               <AnimatePresence>
                 {(hoveredItem || activeItem) && (
                   <motion.div
-                    className="absolute inset-y-1 bg-primary/20 rounded-full border border-primary/30"
+                    className="absolute inset-y-1 bg-primary/20 rounded-full"
                     style={{
                       boxShadow:
                         "0 0 20px rgba(var(--color-primary), 0.3), inset 0 0 20px rgba(var(--color-primary), 0.1)",
