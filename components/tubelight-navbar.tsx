@@ -1,47 +1,53 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { Button } from "@/components/ui/button"
-import { Menu, X } from "lucide-react"
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { Menu, X } from "lucide-react";
 
 const navItems = [
   { name: "Features", href: "#features" },
   { name: "How it Works", href: "#how-it-works" },
   { name: "Security", href: "#security" },
   { name: "Contact", href: "#contact" },
-]
+];
 
 export function TubelightNavbar() {
-  const [activeItem, setActiveItem] = useState("")
-  const [hoveredItem, setHoveredItem] = useState("")
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [activeItem, setActiveItem] = useState("");
+  const [hoveredItem, setHoveredItem] = useState("");
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = navItems.map((item) => document.querySelector(item.href))
-      const scrollPosition = window.scrollY + 100
+      const sections = navItems.map((item) =>
+        document.querySelector(item.href)
+      );
+      const scrollPosition = window.scrollY + 100;
 
       for (let i = sections.length - 1; i >= 0; i--) {
-        const section = sections[i]
-        if (section && section.offsetTop <= scrollPosition) {
-          setActiveItem(navItems[i].href)
-          break
+        const section = sections[i];
+        if (
+          section &&
+          section instanceof HTMLElement &&
+          section.offsetTop <= scrollPosition
+        ) {
+          setActiveItem(navItems[i].href);
+          break;
         }
       }
-    }
+    };
 
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const handleNavClick = (href: string) => {
-    const element = document.querySelector(href)
+    const element = document.querySelector(href);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
+      element.scrollIntoView({ behavior: "smooth" });
     }
-    setMobileMenuOpen(false)
-  }
+    setMobileMenuOpen(false);
+  };
 
   return (
     <header className="border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 fixed top-0 w-full z-50">
@@ -50,7 +56,9 @@ export function TubelightNavbar() {
           {/* Logo */}
           <div className="flex items-center space-x-2">
             <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-lg">C</span>
+              <span className="text-primary-foreground font-bold text-lg">
+                C
+              </span>
             </div>
             <span className="text-xl font-bold text-foreground">CheatFund</span>
           </div>
@@ -86,8 +94,8 @@ export function TubelightNavbar() {
                     activeItem === item.href
                       ? "text-primary"
                       : hoveredItem === item.href
-                        ? "text-primary"
-                        : "text-muted-foreground hover:text-foreground"
+                      ? "text-primary"
+                      : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
                   {item.name}
@@ -97,7 +105,8 @@ export function TubelightNavbar() {
                     <motion.div
                       className="absolute inset-0 rounded-full"
                       style={{
-                        background: "radial-gradient(circle, rgba(var(--color-primary), 0.1) 0%, transparent 70%)",
+                        background:
+                          "radial-gradient(circle, rgba(var(--color-primary), 0.1) 0%, transparent 70%)",
                         filter: "blur(8px)",
                       }}
                       initial={{ opacity: 0 }}
@@ -113,7 +122,12 @@ export function TubelightNavbar() {
 
           {/* Connect Wallet Button & Mobile Menu */}
           <div className="flex items-center space-x-4">
-            <Button className="bg-primary hover:bg-primary/90 text-primary-foreground relative overflow-hidden group">
+            <Button
+              onClick={() =>
+                window.open("https://cheatfund.vercel.app/", "_blank")
+              }
+              className="bg-primary hover:bg-primary/90 text-primary-foreground relative overflow-hidden group"
+            >
               <span className="relative z-10">Connect Wallet</span>
               <motion.div
                 className="absolute inset-0 bg-gradient-to-r from-primary to-primary/80"
@@ -128,7 +142,11 @@ export function TubelightNavbar() {
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="md:hidden p-2 text-muted-foreground hover:text-foreground transition-colors"
             >
-              {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              {mobileMenuOpen ? (
+                <X className="h-5 w-5" />
+              ) : (
+                <Menu className="h-5 w-5" />
+              )}
             </button>
           </div>
         </div>
@@ -163,5 +181,5 @@ export function TubelightNavbar() {
         </AnimatePresence>
       </div>
     </header>
-  )
+  );
 }
