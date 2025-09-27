@@ -1,24 +1,25 @@
-import type React from "react"
-import type { Metadata } from "next"
-import { GeistSans } from "geist/font/sans"
-import { GeistMono } from "geist/font/mono"
-import { Analytics } from "@vercel/analytics/next"
-import { Suspense } from "react"
-import "./globals.css"
+import type React from "react";
+import type { Metadata } from "next";
+import { GeistSans } from "geist/font/sans";
+import { GeistMono } from "geist/font/mono";
+import { Analytics } from "@vercel/analytics/next";
+import { Suspense } from "react";
+import "../styles/globals.css";
 
 export const metadata: Metadata = {
   title: "CheatFund - Decentralized Chit Funds",
-  description: "Join the future of community finance with blockchain-powered chit funds",
+  description:
+    "Join the future of community finance with blockchain-powered chit funds",
   generator: "v0.app",
-}
+};
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
       <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>
         <Suspense fallback={<div>Loading...</div>}>
           {children}
@@ -26,5 +27,5 @@ export default function RootLayout({
         </Suspense>
       </body>
     </html>
-  )
+  );
 }
